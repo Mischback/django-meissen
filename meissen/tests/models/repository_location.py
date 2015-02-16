@@ -6,6 +6,9 @@ from shutil import rmtree
 from tempfile import mkdtemp
 from unittest import skip
 
+# Django imports
+from django.db import IntegrityError
+
 # app imports
 from meissen.exceptions import *
 from meissen.models import RepositoryLocation
@@ -27,7 +30,9 @@ class MeissenRepositoryLocationModelTestCase(MeissenModelTestCase):
         identical path attributes. This is enforced by using Django's CharField
         unique attribute. Let's just see if this works.
         """
-        skip
+        with self.assertRaises(IntegrityError):
+            a = RepositoryLocation.objects.create(path=self.filesystem_path)
+            b = RepositoryLocation.objects.create(path=self.filesystem_path)
 
     def test_enforce_trailing_slash(self):
         """The path attribute must have a trailing slash."""
