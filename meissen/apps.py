@@ -6,11 +6,12 @@ See: https://docs.djangoproject.com/en/1.7/ref/applications/ for details.
 """
 # Django imports
 from django.apps import AppConfig
-from django.db.models.signals import pre_save
+from django.db.models.signals import pre_save, post_save
 
 # app imports
 from meissen.models import RepositoryLocation
 from meissen.signals.repository import callback_check_repo_location
+from meissen.signals.repository import callback_find_existing_repos
 
 
 class MeissenConfig(AppConfig):
@@ -29,3 +30,8 @@ class MeissenConfig(AppConfig):
             sender=RepositoryLocation,
             weak=False,
             dispatch_uid='models.repository.check_repo_location')
+
+        post_save.connect(callback_find_existing_repos,
+            sender=RepositoryLocation,
+            weak=False,
+            dispatch_uid='models.repository.find_existing_repos')
