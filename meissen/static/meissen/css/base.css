@@ -1,0 +1,31 @@
+/*
+ * Basic CSS style for django-meissen
+ */
+
+body {
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+#pagehead {
+    margin-bottom: 1em;
+    background-color: #ccc;
+    border-bottom: 1px solid #666;
+}
+
+#pagefoot {
+    margin-top: 1em;
+    background-color: #ccc;
+    border-top: 1px solid #666;
+}
+#pagefoot p {
+    margin: 0;
+    padding: 0;
+    text-align: right;
+    font-size: .8em;
+}
+
+h1 {
+    margin: 0;
+    padding: 0;
+}
