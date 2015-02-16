@@ -9,7 +9,7 @@ class MeissenFileSystemExceptions(MeissenException):
     """Base class for exceptions during file system operations"""
     pass
 
-class MeissenNotExistingPath(MeissenFileSystemException):
+class MeissenNotExistingPathException(MeissenFileSystemException):
     """Raised if a path does not exist"""
     pass
 
