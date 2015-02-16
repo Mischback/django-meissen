@@ -1,8 +1,10 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
     <head>
         <title>Meissen - Development</title>
         <meta charset="utf-8">
+        <link href="{% static 'meissen/css/base.css' %}" type="text/css" rel="stylesheet" />
     </head>
     <body>
 {% block 'base_body' %}foo{% endblock 'base_body' %}
