@@ -4,6 +4,7 @@
 from django.contrib import admin
 
 # app imports
-from meissen.models import RepositoryLocation
+from meissen.models import RepositoryLocation, Repository
 
 admin.site.register(RepositoryLocation)
+admin.site.register(Repository)
