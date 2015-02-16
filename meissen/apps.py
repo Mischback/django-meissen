@@ -10,8 +10,7 @@ from django.db.models.signals import pre_save, post_save
 
 # app imports
 from meissen.models import RepositoryLocation
-from meissen.signals.repository import callback_check_repo_location
-from meissen.signals.repository import callback_find_existing_repos
+from meissen.signals.repository_location import callback_find_existing_repos
 
 
 class MeissenConfig(AppConfig):
@@ -25,11 +24,6 @@ class MeissenConfig(AppConfig):
 
     def ready(self):
         """Executed when application loading is completed"""
-
-        pre_save.connect(callback_check_repo_location,
-            sender=RepositoryLocation,
-            weak=False,
-            dispatch_uid='models.repository.check_repo_location')
 
         post_save.connect(callback_find_existing_repos,
             sender=RepositoryLocation,
