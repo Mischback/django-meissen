@@ -1,0 +1,17 @@
+{% extends 'meissen/base.html' %}
+
+{% block 'base_body' %}
+        <!--<a href="#content" class="skiplink">Navigation &uuml;berspringen</a>-->
+
+        <header id="pagehead">
+            <h1>GitAPI</h1>
+        </header>
+
+        <main id="content">
+{% block 'main_content' %}meissen/layout.html{% endblock 'main_content' %}
+        </main>
+
+        <footer id="pagefoot">
+            <p>developed by Mischback</p>
+        </footer>
+{% endblock 'base_body' %}
