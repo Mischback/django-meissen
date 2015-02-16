@@ -1,0 +1,14 @@
+{% extends 'meissen/layout.html' %}
+
+{% block 'main_content' %}
+<section>
+    <header><h1>Repositories</h1></header>
+    {% if repos %}
+    <ul>
+        {% for r in repos %}
+        <li><a href="{% url 'meissen:repository.overview' r.id %}">{{ r.name }}</a></li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</section>
+{% endblock 'main_content' %}
