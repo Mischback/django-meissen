@@ -1,6 +1,7 @@
 """These classes represent repositories irl"""
 
 # Django imports
+from django.contrib import admin
 from django.db import models
 
 
@@ -19,3 +20,7 @@ class RepositoryLocation(models.Model):
         app_label = 'meissen'
         verbose_name = 'RepositoryLocation'
         verbose_name_plural = 'RepositoryLocations'
+
+
+class RepositoryLocationAdmin(admin.ModelAdmin):
+    pass
