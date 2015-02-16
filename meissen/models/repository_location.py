@@ -5,6 +5,7 @@ from os import access, F_OK, R_OK, W_OK, X_OK, listdir
 
 # Django imports
 from django.contrib.admin import ModelAdmin
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.forms import ModelForm
 
@@ -41,21 +42,24 @@ class RepositoryLocationAdminForm(ModelForm):
             path += '/'
 
         # check that location
-        # exists
-        if not access(path, F_OK):
-            raise MeissenNotExistingPathException
+        try:
+            # exists
+            if not access(path, F_OK):
+                raise MeissenNotExistingPathException
 
-        # readable
-        if not access(path, R_OK):
-            raise MeissenNoReadAccessException
+            # readable
+            if not access(path, R_OK):
+                raise MeissenNoReadAccessException
 
-        # writeable
-        if not access(path, W_OK):
-            raise MeissenNoWriteAccessException
+            # writeable
+            if not access(path, W_OK):
+                raise MeissenNoWriteAccessException
 
-        # executable
-        if not access(path, X_OK):
-            raise MeissenNoExecuteAccessException
+            # executable
+            if not access(path, X_OK):
+                raise MeissenNoExecuteAccessException
+        except MeissenFileSystemException:
+            raise ValidationError('[{0}] has no sufficient permissions. Needs read/write/execute permissions for user'.format(path))
 
         # returned the validated path
         self.cleaned_data['path'] = path
