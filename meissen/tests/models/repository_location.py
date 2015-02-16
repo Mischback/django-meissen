@@ -36,6 +36,7 @@ class MeissenRepositoryLocationModelTestCase(MeissenModelTestCase):
 
     def test_enforce_trailing_slash(self):
         """The path attribute must have a trailing slash."""
+        # TODO: Must be implemented when the feature is implemented in model
         skip
 
     def test_signal_check_repo_location(self):
