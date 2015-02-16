@@ -1,8 +1,9 @@
 """These classes represent repositories irl"""
 
 # Django imports
-from django.contrib import admin
+from django.contrib.admin import ModelAdmin
 from django.db import models
+from django.forms import ModelForm
 
 
 class RepositoryLocation(models.Model):
@@ -22,5 +23,21 @@ class RepositoryLocation(models.Model):
         verbose_name_plural = 'RepositoryLocations'
 
 
-class RepositoryLocationAdmin(admin.ModelAdmin):
-    pass
+class RepositoryLocationAdminForm(ModelForm):
+    """The form used in the Django admin menu"""
+
+    def clean_path(self):
+        """Makes some validation to the path field"""
+        path = self.cleaned_data['path']
+
+        # enforce the trailing slash
+        if not path[-1:] == '/':
+            path += '/'
+
+        self.cleaned_data['path'] = path
+        return self.cleaned_data['path']
+
+
+class RepositoryLocationAdmin(ModelAdmin):
+
+    form = RepositoryLocationAdminForm
