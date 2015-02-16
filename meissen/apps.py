@@ -32,7 +32,7 @@ class MeissenConfig(AppConfig):
 #            weak=False,
 #            dispatch_uid='models.repository.check_repo_location')
 
-#        post_save.connect(callback_find_existing_repos,
-#            sender=RepositoryLocation,
-#            weak=False,
-#            dispatch_uid='models.repository.find_existing_repos')
+        post_save.connect(callback_find_existing_repos,
+            sender=RepositoryLocation,
+            weak=False,
+            dispatch_uid='models.repository.find_existing_repos')
