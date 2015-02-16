@@ -1,9 +1,15 @@
 """These classes represent repositories irl"""
 
+# Python imports
+from os import access, F_OK, R_OK, W_OK, X_OK, listdir
+
 # Django imports
 from django.contrib.admin import ModelAdmin
 from django.db import models
 from django.forms import ModelForm
+
+# app imports
+from meissen.exceptions import *
 
 
 class RepositoryLocation(models.Model):
@@ -34,6 +40,24 @@ class RepositoryLocationAdminForm(ModelForm):
         if not path[-1:] == '/':
             path += '/'
 
+        # check that location
+        # exists
+        if not access(path, F_OK):
+            raise MeissenNotExistingPathException
+
+        # readable
+        if not access(path, R_OK):
+            raise MeissenNoReadAccessException
+
+        # writeable
+        if not access(path, W_OK):
+            raise MeissenNoWriteAccessException
+
+        # executable
+        if not access(path, X_OK):
+            raise MeissenNoExecuteAccessException
+
+        # returned the validated path
         self.cleaned_data['path'] = path
         return self.cleaned_data['path']
 
