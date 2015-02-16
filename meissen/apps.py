@@ -1,5 +1,16 @@
+"""Application configuration
+
+This is a new feature of Django 1.7, so I don't know if using this will
+make this app unusable in prior versions.
+See: https://docs.djangoproject.com/en/1.7/ref/applications/ for details.
+"""
 # Django imports
 from django.apps import AppConfig
+from django.db.models.signals import pre_save
+
+# app imports
+from meissen.models import RepositoryLocation
+from meissen.signals.repository import callback_check_repo_location
 
 
 class MeissenConfig(AppConfig):
@@ -10,3 +21,11 @@ class MeissenConfig(AppConfig):
 
     verbose_name = 'Meissen'
     """The app's name in frontends"""
+
+    def ready(self):
+        """Executed when application loading is completed"""
+
+        pre_save.connect(callback_check_repo_location,
+            sender=RepositoryLocation,
+            weak=False,
+            dispatch_uid='models.repository.check_repo_location')

@@ -5,7 +5,7 @@ class MeissenException(Exception):
     pass
 
 # FileSystem exceptions
-class MeissenFileSystemExceptions(MeissenException):
+class MeissenFileSystemException(MeissenException):
     """Base class for exceptions during file system operations"""
     pass
 
