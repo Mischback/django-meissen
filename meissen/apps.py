@@ -25,13 +25,14 @@ class MeissenConfig(AppConfig):
 
     def ready(self):
         """Executed when application loading is completed"""
+        pass
 
-        pre_save.connect(callback_check_repo_location,
-            sender=RepositoryLocation,
-            weak=False,
-            dispatch_uid='models.repository.check_repo_location')
+#        pre_save.connect(callback_check_repo_location,
+#            sender=RepositoryLocation,
+#            weak=False,
+#            dispatch_uid='models.repository.check_repo_location')
 
-        post_save.connect(callback_find_existing_repos,
-            sender=RepositoryLocation,
-            weak=False,
-            dispatch_uid='models.repository.find_existing_repos')
+#        post_save.connect(callback_find_existing_repos,
+#            sender=RepositoryLocation,
+#            weak=False,
+#            dispatch_uid='models.repository.find_existing_repos')
