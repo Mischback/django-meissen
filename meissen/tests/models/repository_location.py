@@ -59,3 +59,8 @@ class MeissenRepositoryLocationModelTestCase(MeissenModelTestCase):
         chmod(self.filesystem_path, 0600)
         with self.assertRaises(MeissenNoExecuteAccessException):
             a = RepositoryLocation.objects.create(path=self.filesystem_path)
+
+    def test_signal_find_existing_repos(self):
+        """Are existing repositories recognized?"""
+        # TODO: Too lazy to implement this now!
+        skip

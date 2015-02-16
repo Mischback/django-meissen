@@ -20,6 +20,3 @@ class MeissenRepositoryModelTestCase(MeissenModelTestCase):
 
     def test_unique_repo(self):
         skip
-
-    def test_signal_find_existing_repos(self):
-        skip
