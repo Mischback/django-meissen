@@ -67,5 +67,13 @@ class RepositoryLocationAdminForm(ModelForm):
 
 
 class RepositoryLocationAdmin(ModelAdmin):
+    """Provide tweaks for the Django admin menu"""
 
     form = RepositoryLocationAdminForm
+    """Use our custom form with custom validation"""
+
+    def get_readonly_fields(self, request, obj=None):
+        """Makes the path editable on creation, readonly on edit"""
+        if obj:
+            return self.readonly_fields + ('path',)
+        return self.readonly_fields
