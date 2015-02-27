@@ -3,6 +3,9 @@
 # Django imports
 from django.db import models
 
+# app imports
+from meissen.models import MeissenUser
+
 
 class Repository(models.Model):
     """Represents a single Repository"""
@@ -15,6 +18,8 @@ class Repository(models.Model):
 
     filesystem_name = models.CharField(max_length=100)
     """Name on the filesystem"""
+
+    read_users = models.ManyToManyField(MeissenUser, blank=True)
 
     def __unicode__(self):
         return '[{0}] {1} - {2}{3}'.format(
