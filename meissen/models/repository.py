@@ -19,7 +19,11 @@ class Repository(models.Model):
     filesystem_name = models.CharField(max_length=100)
     """Name on the filesystem"""
 
+    public_repo = models.BooleanField(default=False)
+    """Is this repository public?!"""
+
     read_users = models.ManyToManyField(MeissenUser, blank=True, related_name='read_users_set')
+    """These users have read access to the repository"""
 
     def __unicode__(self):
         return '[{0}] {1} - {2}{3}'.format(
