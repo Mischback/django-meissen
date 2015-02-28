@@ -19,7 +19,7 @@ class Repository(models.Model):
     filesystem_name = models.CharField(max_length=100)
     """Name on the filesystem"""
 
-    read_users = models.ManyToManyField(MeissenUser, blank=True)
+    read_users = models.ManyToManyField(MeissenUser, blank=True, related_name='read_users_set')
 
     def __unicode__(self):
         return '[{0}] {1} - {2}{3}'.format(

@@ -6,7 +6,7 @@ from django.db import models
 
 class MeissenUser(models.Model):
 
-    django_user = models.OneToOneField(settings.AUTH_USER_MODEL)
+    django_user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='meissen_user_set')
 
     def __unicode__(self):
         return '[MeissenUser] {0}'.format(self.django_user.username)

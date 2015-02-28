@@ -14,6 +14,8 @@ def overview(request, repo_id):
     # TODO: Do we really want to use this shortcut?
     repo = get_object_or_404(Repository, pk=repo_id)
 
-    print request.user
+    # Has the current user read access?
+    if request.user.meissen_user_set.read_users_set.filter(pk=repo_id):
+        print request.user
 
     return render(request, 'meissen/repository/overview.html')
