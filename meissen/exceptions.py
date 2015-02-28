@@ -24,3 +24,12 @@ class MeissenNoWriteAccessException(MeissenFileSystemException):
 class MeissenNoExecuteAccessException(MeissenFileSystemException):
     """Raised if something can not be executed"""
     pass
+
+# Permission exceptions
+class MeissenPermissionException(MeissenException):
+    """Base class for exceptions concerning permissions"""
+    pass
+
+class MeissenAccessDeniedException(MeissenPermissionException):
+    """Raised if finally no access can be granted"""
+    pass
