@@ -7,17 +7,17 @@ from django.shortcuts import render
 from meissen.models import Repository
 
 
-def home(req):
+def home(request):
     """The app's landing page"""
-    return render(req, 'meissen/home.html')
+    return render(request, 'meissen/home.html')
 
-def overview(req):
+def overview(request):
     """The app's landing page"""
 
     # get all repositories
     # TODO: Here is the place to limit access
     repos = Repository.objects.all()
 
-    return render(req, 'meissen/overview.html',
+    return render(request, 'meissen/overview.html',
         { 'repos': repos, },
     )
