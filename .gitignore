@@ -1,2 +1,5 @@
 # do NOT track Python compilation files
 *.py[cod]
+
+# do NOT track the build directory of sphinx.
+doc/_build/
