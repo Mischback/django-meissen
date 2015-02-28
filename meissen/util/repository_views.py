@@ -16,8 +16,8 @@ def get_and_check_repo(request, repo_id):
     try:
         # Has the current user read access?
         # TODO: Make this PEP8!!!
-        if repo.public_repo or request.user.meissen_user_set.read_users_set.filter(pk=repo_id):
-            print 'ACCESS GRANTED!'
+        if not (repo.public_repo or request.user.meissen_user_set.read_users_set.filter(pk=repo_id)):
+            raise MeissenAccessDeniedException('No read access')
     except AttributeError:
         raise MeissenAccessDeniedException('Caught AttributeError')
 
